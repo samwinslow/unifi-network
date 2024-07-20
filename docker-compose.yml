@@ -32,8 +32,11 @@ services:
     restart: unless-stopped
     container_name: unifi-db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_DBNAME=unifi
+      - MONGO_USER=unifi
+      - MONGO_PASS=example-insecure-c24acf85
     volumes:
       - ./data/unifi-db:/data/db
       - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
